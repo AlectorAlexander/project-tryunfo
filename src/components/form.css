@@ -1,0 +1,18 @@
+#Formulário form {
+    width: 600px;
+    display: flex;
+    flex-wrap: wrap;
+
+}
+#Formulário label {
+    margin: 30px;
+}
+.label {
+    display: flex;
+    flex-direction: column;
+}
+.save {
+    height: 30px;
+    margin: 60px;
+    border-radius: 25%;
+}
