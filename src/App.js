@@ -1,4 +1,5 @@
 import React from 'react';
+import Card from './components/Card';
 import Form from './components/Form';
 
 class App extends React.Component {
@@ -8,12 +9,12 @@ class App extends React.Component {
     this.state = {
       cardName: '',
       cardDescription: '',
-      tribute1: 0,
-      tribute2: 0,
-      tribute3: 0,
+      cardAttr1: '',
+      cardAttr2: '',
+      cardAttr3: '',
       cardImage: '',
       cardRare: '',
-      cardTrunfo: '',
+      cardTrunfo: false,
       isSaveButtonDisabled: true,
     };
   }
@@ -25,24 +26,43 @@ class App extends React.Component {
   })
 
   inputChange({ target }) {
-    console.log(target.name);
-    console.log(this.state);
     //
     const { name, value } = target;
+    console.log(target.type);
+
     this.setState(() => ({
-      [name]: value,
+      [name]: target.type === 'checkbox' ? target.checked : value,
       isSaveButtonDisabled: false,
     }));
   }
 
   render() {
-    const { cardName } = this.state;
-    const { isSaveButtonDisabled } = this.state;
+    const { cardName, cardDescription,
+      cardAttr1, cardAttr2, cardAttr3, cardImage,
+      cardRare, cardTrunfo, isSaveButtonDisabled } = this.state;
     const vddOuN = isSaveButtonDisabled === true ? false : 'disabled';
     return (
-      <div>
+      <div className="App">
         <h1>Tryunfo</h1>
-        <Form onInputChange={ this.inputChange } disabled={ vddOuN } value={ cardName } />
+        <div className="ap">
+          <Form
+            onInputChange={ this.inputChange }
+            disabled={ vddOuN }
+            value={ cardName }
+            cardDescription={ cardDescription }
+            cardTrunfo={ cardTrunfo }
+          />
+          <Card
+            cardName={ cardName }
+            cardDescription={ cardDescription }
+            cardAttr1={ cardAttr1 }
+            cardAttr2={ cardAttr2 }
+            cardAttr3={ cardAttr3 }
+            cardImage={ cardImage }
+            cardRare={ cardRare }
+            cardTrunfo={ cardTrunfo }
+          />
+        </div>
       </div>
     );
   }

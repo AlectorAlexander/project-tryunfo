@@ -1,0 +1,39 @@
+.Card {
+  background: #1d022687;
+  border: 7px solid rgba(43, 8, 8, 0.693);
+  border-radius: 10px;
+  display: flex;
+  height: 529px;
+  justify-content: center;
+  left: 884px;
+  padding: 10px;
+  position: absolute;
+  top: 63px;
+  width: 348px;
+}
+
+
+ul {
+  list-style: none;
+}
+
+h2 {
+  background-color: black;
+  border-radius: 12px 12px 0 0;
+  color: red;
+  margin-bottom: 0;
+  text-align: center;
+}
+
+img {
+  background-color: rgba(0, 0, 0, 0.453);
+  height: 250px;
+  width: 350px;
+}
+
+p {
+  background: white;
+  border-radius: 0 0 12px 12px;
+  margin-top: 0;
+  text-align: center;
+}
