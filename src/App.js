@@ -20,37 +20,56 @@ class App extends React.Component {
   }
 
   onSaveButtonClick = (() => {
-    this.state = {
-      isSaveButtonDisabled: true,
-    };
+    const noventa = 90;
+    const duzentosE10 = 210;
+    const { cardName, cardDescription,
+      cardAttr1, cardAttr2, cardAttr3, cardImage,
+      cardRare } = this.state;
+    const stuff = [cardName, cardDescription, cardAttr1, cardAttr2, cardAttr3, cardImage,
+      cardRare];
+    const attrs = [cardAttr1, cardAttr2, cardAttr3];
+    const isNotEmpty = stuff.every((stuffs) => stuffs !== '');
+    const isNotBig = attrs.every((attr) => attr >= 0 && attr <= noventa);
+    const isNotSoBig = Number(cardAttr1)
+    + Number(cardAttr2)
+    + Number(cardAttr3)
+    <= duzentosE10;
+    const validate = isNotEmpty && isNotBig && isNotSoBig;
+    console.log(isNotBig);
+    if (validate) {
+      this.setState(() => ({
+        isSaveButtonDisabled: false,
+      }));
+    } else {
+      this.setState(() => ({
+        isSaveButtonDisabled: true,
+      }));
+    }
   })
 
   inputChange({ target }) {
     //
     const { name, value } = target;
-    console.log(target.type);
 
     this.setState(() => ({
       [name]: target.type === 'checkbox' ? target.checked : value,
-      isSaveButtonDisabled: false,
-    }));
+    }), this.onSaveButtonClick);
   }
 
   render() {
     const { cardName, cardDescription,
       cardAttr1, cardAttr2, cardAttr3, cardImage,
       cardRare, cardTrunfo, isSaveButtonDisabled } = this.state;
-    const vddOuN = isSaveButtonDisabled === true ? false : 'disabled';
     return (
       <div className="App">
         <h1>Tryunfo</h1>
         <div className="ap">
           <Form
             onInputChange={ this.inputChange }
-            disabled={ vddOuN }
             value={ cardName }
             cardDescription={ cardDescription }
             cardTrunfo={ cardTrunfo }
+            isSaveButtonDisabled={ isSaveButtonDisabled }
           />
           <Card
             cardName={ cardName }
