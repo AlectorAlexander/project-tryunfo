@@ -9,17 +9,51 @@ class App extends React.Component {
     this.state = {
       cardName: '',
       cardDescription: '',
-      cardAttr1: '',
-      cardAttr2: '',
-      cardAttr3: '',
+      cardAttr1: '0',
+      cardAttr2: '0',
+      cardAttr3: '0',
       cardImage: '',
       cardRare: '',
       cardTrunfo: false,
       isSaveButtonDisabled: true,
+      onSave: [],
     };
   }
 
+  clean = (() => {
+    this.setState(() => ({
+      cardName: '',
+      cardDescription: '',
+      cardAttr1: '0',
+      cardAttr2: '0',
+      cardAttr3: '0',
+      cardImage: '',
+      cardRare: '',
+      cardTrunfo: false,
+      isSaveButtonDisabled: true,
+    }));
+  })
+
   onSaveButtonClick = (() => {
+    const { cardName, cardDescription, cardAttr1,
+      cardAttr2, cardAttr3, cardImage, cardRare, cardTrunfo } = this.state;
+    const newObj = {
+      cardName,
+      cardDescription,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+      cardImage,
+      cardRare,
+      cardTrunfo,
+    };
+    this.setState((estate) => ({
+      // Referência https://stackoverflow.com/questions/37435334/correct-way-to-push-into-state-array
+      onSave: [...estate.onSave, newObj],
+    }), this.clean);
+  })
+
+  SaveButtonClick = (() => {
     const noventa = 90;
     const duzentosE10 = 210;
     const { cardName, cardDescription,
@@ -35,7 +69,6 @@ class App extends React.Component {
     + Number(cardAttr3)
     <= duzentosE10;
     const validate = isNotEmpty && isNotBig && isNotSoBig;
-    console.log(isNotBig);
     if (validate) {
       this.setState(() => ({
         isSaveButtonDisabled: false,
@@ -50,10 +83,9 @@ class App extends React.Component {
   inputChange({ target }) {
     //
     const { name, value } = target;
-
     this.setState(() => ({
       [name]: target.type === 'checkbox' ? target.checked : value,
-    }), this.onSaveButtonClick);
+    }), this.SaveButtonClick);
   }
 
   render() {
@@ -66,10 +98,17 @@ class App extends React.Component {
         <div className="ap">
           <Form
             onInputChange={ this.inputChange }
+            cardName={ cardName }
+            cardAttr1={ cardAttr1 }
+            cardAttr2={ cardAttr2 }
+            cardAttr3={ cardAttr3 }
+            cardImage={ cardImage }
+            cardRare={ cardRare }
             value={ cardName }
             cardDescription={ cardDescription }
             cardTrunfo={ cardTrunfo }
             isSaveButtonDisabled={ isSaveButtonDisabled }
+            onSaveButtonClick={ this.onSaveButtonClick }
           />
           <Card
             cardName={ cardName }
