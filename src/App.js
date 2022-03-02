@@ -17,8 +17,16 @@ class App extends React.Component {
       cardTrunfo: false,
       isSaveButtonDisabled: true,
       onSave: [],
+      hasTrunfo: false,
+      frase: 'Você já tem um Super Trunfo em seu baralho',
     };
   }
+
+  hasTrunfo = (() => {
+    this.setState(() => ({
+      hasTrunfo: true,
+    }), this.clean);
+  })
 
   clean = (() => {
     this.setState(() => ({
@@ -47,10 +55,11 @@ class App extends React.Component {
       cardRare,
       cardTrunfo,
     };
+    const returno = newObj.cardTrunfo ? this.hasTrunfo : this.clean;
     this.setState((estate) => ({
       // Referência https://stackoverflow.com/questions/37435334/correct-way-to-push-into-state-array
       onSave: [...estate.onSave, newObj],
-    }), this.clean);
+    }), returno);
   })
 
   SaveButtonClick = (() => {
@@ -91,7 +100,7 @@ class App extends React.Component {
   render() {
     const { cardName, cardDescription,
       cardAttr1, cardAttr2, cardAttr3, cardImage,
-      cardRare, cardTrunfo, isSaveButtonDisabled } = this.state;
+      cardRare, cardTrunfo, isSaveButtonDisabled, hasTrunfo, frase } = this.state;
     return (
       <div className="App">
         <h1>Tryunfo</h1>
@@ -109,6 +118,8 @@ class App extends React.Component {
             cardTrunfo={ cardTrunfo }
             isSaveButtonDisabled={ isSaveButtonDisabled }
             onSaveButtonClick={ this.onSaveButtonClick }
+            hasTrunfo={ hasTrunfo }
+            frase={ frase }
           />
           <Card
             cardName={ cardName }

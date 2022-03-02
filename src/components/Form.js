@@ -1,13 +1,14 @@
 import React from 'react';
 import './form.css';
 import PropTypes from 'prop-types';
+import Inputs from './inputs';
 
 class Form extends React.Component {
   render() {
     const { cardName, cardDescription,
       cardAttr1, cardAttr2, cardAttr3, cardImage,
       cardRare, cardTrunfo, isSaveButtonDisabled,
-      onInputChange, onSaveButtonClick } = this.props;
+      onInputChange, onSaveButtonClick, hasTrunfo, frase } = this.props;
     return (
       <div id="Formulário">
         <form>
@@ -82,14 +83,9 @@ class Form extends React.Component {
             <option value="muito raro">Muito raro</option>
           </select>
           <label htmlFor="check">
-            <span> Super Trunfo? </span>
-            <input
-              data-testid="trunfo-input"
-              name="cardTrunfo"
-              onChange={ onInputChange }
-              type="checkbox"
-              checked={ cardTrunfo }
-            />
+            { hasTrunfo === true
+              ? <p data-testid="trunfo-card">{frase}</p>
+              : <Inputs on={ onInputChange } has={ hasTrunfo } card={ cardTrunfo } />}
           </label>
           <button
             type="button"
@@ -120,7 +116,8 @@ Form.propTypes = {
   isSaveButtonDisabled: PropTypes.bool.isRequired,
   onInputChange: PropTypes.func.isRequired,
   onSaveButtonClick: PropTypes.func.isRequired,
-
+  hasTrunfo: PropTypes.bool.isRequired,
+  frase: PropTypes.string.isRequired,
 };
 
 export default Form;
