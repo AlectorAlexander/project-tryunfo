@@ -1,32 +1,32 @@
 import React from 'react';
-import './card.css';
+import './cards.css';
 import PropTypes from 'prop-types';
+import Card from './Card';
 
-class Card extends React.Component {
+class Cards extends React.Component {
   render() {
     const { cardName, cardDescription,
       cardAttr1, cardAttr2, cardAttr3, cardImage,
       cardRare, cardTrunfo, divClass, sectionClass } = this.props;
     return (
       <div className={ divClass }>
-        <section className={ sectionClass }>
-          <h2 data-testid="name-card">{cardName}</h2>
-          <img src={ cardImage } alt={ cardName } data-testid="image-card" />
-          <p data-testid="description-card">{ cardDescription }</p>
-          <ul>
-            <li data-testid="attr1-card">{ cardAttr1 }</li>
-            <li data-testid="attr2-card">{ cardAttr2 }</li>
-            <li data-testid="attr3-card">{ cardAttr3 }</li>
-          </ul>
-          <h3 data-testid="rare-card">{ cardRare }</h3>
-          { cardTrunfo === true ? <h3 data-testid="trunfo-card">Super Trunfo</h3> : ' '}
-        </section>
+        <Card
+          cardName={ cardName }
+          sectionClass={ sectionClass }
+          cardDescription={ cardDescription }
+          cardAttr1={ cardAttr1 }
+          cardAttr2={ cardAttr2 }
+          cardAttr3={ cardAttr3 }
+          cardImage={ cardImage }
+          cardRare={ cardRare }
+          cardTrunfo={ cardTrunfo }
+        />
       </div>
     );
   }
 }
 
-Card.propTypes = {
+Cards.propTypes = {
   cardName: PropTypes.string.isRequired,
   cardDescription: PropTypes.string.isRequired,
   cardAttr1: PropTypes.string.isRequired,
@@ -39,4 +39,4 @@ Card.propTypes = {
   sectionClass: PropTypes.string.isRequired,
 };
 
-export default Card;
+export default Cards;

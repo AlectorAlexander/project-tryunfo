@@ -1,23 +1,27 @@
-.Card {
+.cardsSection {
+  display: flex;
+  flex-flow: wrap row;
+}
+
+.cardsComponent {
+  margin: 90px 0;
+}
+
+.Cards {
   background: #1d022687;
   border: 7px solid rgba(43, 8, 8, 0.693);
   border-radius: 10px;
   display: flex;
   height: 529px;
-  justify-content: center;
-  left: 884px;
   padding: 10px;
-  position: absolute;
-  top: 63px;
   width: 348px;
 }
 
-
-.card ul {
+.cards ul {
   list-style: none;
 }
 
-.card h2 {
+.cards h2 {
   background-color: black;
   border-radius: 12px 12px 0 0;
   color: red;
@@ -25,13 +29,13 @@
   text-align: center;
 }
 
-.card img {
+.cards img {
   background-color: rgba(0, 0, 0, 0.453);
   height: 250px;
   width: 350px;
 }
 
-.card p {
+.cards p {
   background: white;
   border-radius: 0 0 12px 12px;
   margin-top: 0;

@@ -1,5 +1,6 @@
 import React from 'react';
 import Card from './components/Card';
+import Cards from './components/Cards';
 import Form from './components/Form';
 
 class App extends React.Component {
@@ -100,7 +101,9 @@ class App extends React.Component {
   render() {
     const { cardName, cardDescription,
       cardAttr1, cardAttr2, cardAttr3, cardImage,
-      cardRare, cardTrunfo, isSaveButtonDisabled, hasTrunfo, frase } = this.state;
+      cardRare, cardTrunfo, isSaveButtonDisabled, hasTrunfo, frase, onSave } = this.state;
+    const titleOfCardsComponent = onSave.length > 0
+      ? <h1 className="cardsComponent">Todas as cartas</h1> : ' ';
     return (
       <div className="App">
         <h1>Tryunfo</h1>
@@ -123,6 +126,8 @@ class App extends React.Component {
           />
           <Card
             cardName={ cardName }
+            divClass="Card"
+            sectionClass="card"
             cardDescription={ cardDescription }
             cardAttr1={ cardAttr1 }
             cardAttr2={ cardAttr2 }
@@ -131,6 +136,22 @@ class App extends React.Component {
             cardRare={ cardRare }
             cardTrunfo={ cardTrunfo }
           />
+        </div>
+        { titleOfCardsComponent }
+        <div className="cardsSection">
+          { onSave.map((state, i) => (<Cards
+            cardName={ state.cardName }
+            divClass={ `Cards number${i}` }
+            sectionClass={ `cards number${i}` }
+            key={ i }
+            cardDescription={ state.cardDescription }
+            cardAttr1={ state.cardAttr1 }
+            cardAttr2={ state.cardAttr2 }
+            cardAttr3={ state.cardAttr3 }
+            cardImage={ state.cardImage }
+            cardRare={ state.cardRare }
+            cardTrunfo={ state.cardTrunfo }
+          />)) }
         </div>
       </div>
     );
