@@ -8,13 +8,19 @@
 }
 
 .Cards {
+  align-items: center;
   background: #1d022687;
   border: 7px solid rgba(43, 8, 8, 0.693);
   border-radius: 10px;
   display: flex;
+  flex-direction: column;
   height: 529px;
   padding: 10px;
   width: 348px;
+}
+
+.button-element {
+  width: 60px;
 }
 
 .cards ul {
@@ -40,4 +46,8 @@
   border-radius: 0 0 12px 12px;
   margin-top: 0;
   text-align: center;
+}
+
+.cards {
+  height: 529px;
 }

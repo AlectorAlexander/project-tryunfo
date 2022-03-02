@@ -14,7 +14,7 @@ class App extends React.Component {
       cardAttr2: '0',
       cardAttr3: '0',
       cardImage: '',
-      cardRare: '',
+      cardRare: 'Normal',
       cardTrunfo: false,
       isSaveButtonDisabled: true,
       onSave: [],
@@ -22,6 +22,19 @@ class App extends React.Component {
       frase: 'Você já tem um Super Trunfo em seu baralho',
     };
   }
+
+  removeCard = (({ target }) => {
+    const { onSave } = this.state;
+    const { value } = target;
+    const { cardTrunfo } = onSave[value];
+    onSave.splice(value, 1);
+    this.clean();
+    if (cardTrunfo) {
+      this.setState(() => ({
+        hasTrunfo: false,
+      }));
+    }
+  })
 
   hasTrunfo = (() => {
     this.setState(() => ({
@@ -151,6 +164,8 @@ class App extends React.Component {
             cardImage={ state.cardImage }
             cardRare={ state.cardRare }
             cardTrunfo={ state.cardTrunfo }
+            removeCard={ this.removeCard }
+            index={ i }
           />)) }
         </div>
       </div>
