@@ -49,9 +49,10 @@ function OnSave() {
     }
   });
   useEffect(() => {
+    console.log(mainCard);
     SaveButtonClick();
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [mainCard]);
 
   const cleanMainCard = () => setMainCard({
     cardName: '',
