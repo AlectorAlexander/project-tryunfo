@@ -3,6 +3,17 @@ import React, { useState } from 'react';
 import TryContext from './TryContext';
 
 function Provider({ children }) {
+  const [mainCard, setMainCard] = useState({
+    cardName: '',
+    cardDescription: '',
+    cardAttr1: '0',
+    cardAttr2: '0',
+    cardAttr3: '0',
+    cardImage: '',
+    cardRare: '',
+    cardTrunfo: false,
+    isSaveButtonDisabled: true,
+  });
   const [cardName, setCardName] = useState('');
   const [cardDescription, setCardDescription] = useState('');
   const [cardAttr1, setCardAttr1] = useState('0');
@@ -11,7 +22,6 @@ function Provider({ children }) {
   const [cardImage, setcardImage] = useState('');
   const [cardRare, setCardRare] = useState('Normal');
   const [cardTrunfo, setCardTrunfo] = useState(false);
-  const [isSaveButtonDisabled, setIsSaveButtonDisabled] = useState(true);
   const [onSave, setOnSave] = useState([]);
   const [hasTrunfo, setHasTrunfo] = useState(false);
   const [frase, setFrase] = useState('Você já tem um Super Trunfo em seu baralho');
@@ -20,17 +30,14 @@ function Provider({ children }) {
     setCardRare,
     cardTrunfo,
     setCardTrunfo,
-    isSaveButtonDisabled,
-    setIsSaveButtonDisabled,
     onSave,
     setOnSave,
     hasTrunfo,
     setHasTrunfo,
     frase,
     setFrase,
-    column,
-    setColumn,
-    loading,
+    mainCard,
+    setMainCard,
     cardName,
     cardImage,
     cardDescription,
@@ -40,11 +47,8 @@ function Provider({ children }) {
     setCardAttr1,
     setCardAttr2,
     setCardAttr3,
-    filterByNumeric,
-    setFilterByNumeric,
     setCardName,
     setCardDescription,
-    setStarWarsState,
     setcardImage,
   };
 
