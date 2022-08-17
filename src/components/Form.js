@@ -23,7 +23,6 @@ function Form() {
     snap,
     setHasTrunfo,
     onSave,
-    frase,
   } = useContext(TryContext);
 
   const [formCard, setFormCard] = useState(cardAttributes);
@@ -45,8 +44,9 @@ function Form() {
       setFormCard(cardAttributes);
 
       // Aqui, na linha 50, estou aproveitando o useEffect q, consequentemente, se inicializa sempre q o usuário clica em 'salvar', para conferir se alguma card salva no estado global 'onSave' possui o atributo 'cardTrunfo' marcado como 'true'. Caso sim, o usuário não verá mais o checkbox, e em seu lugar terá uma frase informando q ele já possui um card superTrunfo. Só pode haver uma superTrunfo no game.
-      onSave.map((card) => (
-        card.cardTrunfo ? setHasTrunfo(true) : setHasTrunfo(false)));
+      const itsTrunfoOrNot = onSave.some((card) => (
+        card.cardTrunfo === true));
+      setHasTrunfo(itsTrunfoOrNot);
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [decimation], snap(false));
@@ -140,12 +140,11 @@ function Form() {
           <option value="raro">Raro</option>
           <option value="muito raro">Muito raro</option>
         </select>
-        <label htmlFor="check">
-          {/* se o usuário já possui uma carta superTrunfo, ele verá uma frase o informando disso ao invés do checkbox */}
-          { hasTrunfo === true
-            ? <p data-testid="trunfo-card">{frase}</p>
-            : <Inputs on={ onInputChange } has={ hasTrunfo } card={ cardTrunfo } />}
-        </label>
+        <Inputs
+          hasTrunfo={ hasTrunfo }
+          onChange={ onInputChange }
+          checked={ cardTrunfo }
+        />
         <OnSave />
       </form>
     </div>
