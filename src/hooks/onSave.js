@@ -66,27 +66,7 @@ function OnSave() {
   }, snap(true));
 
   const onSaveButtonClick = (() => {
-    const {
-      cardName,
-      cardDescription,
-      cardAttr1,
-      cardAttr2,
-      cardAttr3,
-      cardImage,
-      cardRare,
-      cardTrunfo,
-    } = mainCard;
-
-    const newObj = {
-      cardName,
-      cardDescription,
-      cardAttr1,
-      cardAttr2,
-      cardAttr3,
-      cardImage,
-      cardRare,
-      cardTrunfo,
-    };
+    const newObj = { ...mainCard };
     setOnSave([...onSave, newObj]);
     return cleanMainCard();
   });

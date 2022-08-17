@@ -1,11 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react';
 import './form.css';
-import PropTypes from 'prop-types';
 import Inputs from './inputs';
 import OnSave from '../hooks/onSave';
 import TryContext from '../context/TryContext';
 
-function Form(props) {
+function Form() {
   const cardAttributes = {
     cardName: '',
     cardDescription: '',
@@ -24,9 +23,9 @@ function Form(props) {
     snap,
     setHasTrunfo,
     onSave,
+    frase,
   } = useContext(TryContext);
 
-  const { frase } = props;
   const [formCard, setFormCard] = useState(cardAttributes);
 
   const {
@@ -152,9 +151,5 @@ function Form(props) {
     </div>
   );
 }
-
-Form.propTypes = {
-  frase: PropTypes.string.isRequired,
-};
 
 export default Form;
