@@ -49,7 +49,6 @@ function OnSave() {
     }
   });
   useEffect(() => {
-    console.log(mainCard);
     SaveButtonClick();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mainCard]);
@@ -89,7 +88,7 @@ function OnSave() {
       cardTrunfo,
     };
     setOnSave([...onSave, newObj]);
-    return cleanMainCard;
+    return cleanMainCard();
   });
 
   return (

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './form.css';
 import PropTypes from 'prop-types';
 import Inputs from './inputs';
@@ -6,12 +6,47 @@ import OnSave from '../hooks/onSave';
 import TryContext from '../context/TryContext';
 
 function Form(props) {
-  const { /* mainCard */ setMainCard, isSaveButtonDisabled } = useContext(TryContext);
+  const { setMainCard, isSaveButtonDisabled } = useContext(TryContext);
+  const { hasTrunfo, frase } = props;
+  const [formCard, setFormCard] = useState({
+    cardName: '',
+    cardDescription: '',
+    cardAttr1: '0',
+    cardAttr2: '0',
+    cardAttr3: '0',
+    cardImage: '',
+    cardRare: 'Normal',
+    cardTrunfo: false,
+  });
 
-  const { cardName, cardDescription,
-    cardAttr1, cardAttr2, cardAttr3, cardImage,
-    cardRare, cardTrunfo,
-    onInputChange, hasTrunfo, frase } = props;
+  const {
+    cardName,
+    cardDescription,
+    cardAttr1,
+    cardAttr2,
+    cardAttr3,
+    cardImage,
+    cardRare,
+    cardTrunfo } = formCard;
+
+  const onInputChange = ({ target }) => {
+    const form = {
+      cardName,
+      cardDescription,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+      cardImage,
+      cardRare,
+      cardTrunfo,
+    };
+    const { name, value, type, checked } = target;
+    if (type === 'checkbox') { form[name] = checked; } else {
+      form[name] = value;
+    }
+    setFormCard(form);
+  };
+
   useEffect(() => {
     setMainCard({
       cardName,
@@ -121,15 +156,6 @@ function Form(props) {
 }
 
 Form.propTypes = {
-  cardName: PropTypes.string.isRequired,
-  cardDescription: PropTypes.string.isRequired,
-  cardAttr1: PropTypes.string.isRequired,
-  cardAttr2: PropTypes.string.isRequired,
-  cardAttr3: PropTypes.string.isRequired,
-  cardImage: PropTypes.string.isRequired,
-  cardRare: PropTypes.string.isRequired,
-  cardTrunfo: PropTypes.bool.isRequired,
-  onInputChange: PropTypes.func.isRequired,
   hasTrunfo: PropTypes.bool.isRequired,
   frase: PropTypes.string.isRequired,
 };

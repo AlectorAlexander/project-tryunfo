@@ -7,10 +7,10 @@ function MainCard() {
   const { mainCard } = useContext(TryContext);
   const { cardName, cardDescription,
     cardAttr1, cardAttr2, cardAttr3, cardImage,
-    cardRare, cardTrunfo, divClass, sectionClass } = mainCard;
+    cardRare, cardTrunfo } = mainCard;
   return (
-    <div className={ divClass }>
-      <section className={ sectionClass }>
+    <div className="Card">
+      <section className="card">
         <h2 data-testid="name-card">{cardName}</h2>
         <img src={ cardImage } alt={ cardName } data-testid="image-card" />
         <p data-testid="description-card">{ cardDescription }</p>

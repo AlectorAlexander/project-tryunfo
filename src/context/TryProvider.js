@@ -14,22 +14,10 @@ function Provider({ children }) {
     cardTrunfo: false,
     isSaveButtonDisabled: true,
   });
-  const [cardName, setCardName] = useState('');
-  const [cardDescription, setCardDescription] = useState('');
-  const [cardAttr1, setCardAttr1] = useState('0');
-  const [cardAttr2, setCardAttr2] = useState('0');
-  const [cardAttr3, setCardAttr3] = useState('0');
-  const [cardImage, setcardImage] = useState('');
-  const [cardRare, setCardRare] = useState('Normal');
-  const [cardTrunfo, setCardTrunfo] = useState(false);
   const [onSave, setOnSave] = useState([]);
   const [hasTrunfo, setHasTrunfo] = useState(false);
   const [frase, setFrase] = useState('Você já tem um Super Trunfo em seu baralho');
   const contextValue = {
-    cardRare,
-    setCardRare,
-    cardTrunfo,
-    setCardTrunfo,
     onSave,
     setOnSave,
     hasTrunfo,
@@ -38,18 +26,6 @@ function Provider({ children }) {
     setFrase,
     mainCard,
     setMainCard,
-    cardName,
-    cardImage,
-    cardDescription,
-    cardAttr1,
-    cardAttr2,
-    cardAttr3,
-    setCardAttr1,
-    setCardAttr2,
-    setCardAttr3,
-    setCardName,
-    setCardDescription,
-    setcardImage,
   };
 
   return (
