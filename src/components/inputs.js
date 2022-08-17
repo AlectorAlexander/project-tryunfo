@@ -4,29 +4,32 @@ import PropTypes from 'prop-types';
 
 class Inputs extends React.Component {
   render() {
-    const { on, has, card } = this.props;
+    const { onChange, checked, hasTrunfo } = this.props;
     return (
       <div className="Input">
-        <label htmlFor="check">
-          <span> Super Trunfo? </span>
-          <input
-            data-testid="trunfo-input"
-            name="cardTrunfo"
-            onChange={ on }
-            disabled={ has }
-            type="checkbox"
-            checked={ card }
-          />
-        </label>
+        {/* se o usuário já possui uma carta superTrunfo, ele verá uma frase o informando disso ao invés do checkbox 'Super Trunfo?' */}
+        { !hasTrunfo
+          ? (
+            <label htmlFor="check">
+              <span> Super Trunfo? </span>
+              <input
+                data-testid="trunfo-input"
+                name="cardTrunfo"
+                onChange={ onChange }
+                type="checkbox"
+                checked={ checked }
+              />
+            </label>)
+          : <p data-testid="trunfo-card">Você já tem um Super Trunfo em seu baralho</p>}
       </div>
     );
   }
 }
 
 Inputs.propTypes = {
-  card: PropTypes.bool.isRequired,
-  on: PropTypes.func.isRequired,
-  has: PropTypes.bool.isRequired,
+  checked: PropTypes.bool.isRequired,
+  hasTrunfo: PropTypes.bool.isRequired,
+  onChange: PropTypes.func.isRequired,
 
 };
 
