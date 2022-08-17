@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import TryContext from '../context/TryContext';
 
 function OnSave() {
-  const { setOnSave, onSave, mainCard, setMainCard } = useContext(TryContext);
+  const { setOnSave, onSave, mainCard, setMainCard, snap } = useContext(TryContext);
   const [isSaveButtonDisabled, setIsSaveButtonDisabled] = useState(true);
 
   const SaveButtonClick = (() => {
@@ -63,7 +63,7 @@ function OnSave() {
     cardRare: '',
     cardTrunfo: false,
     isSaveButtonDisabled: true,
-  });
+  }, snap(true));
 
   const onSaveButtonClick = (() => {
     const {

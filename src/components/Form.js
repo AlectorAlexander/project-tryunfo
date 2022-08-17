@@ -6,9 +6,7 @@ import OnSave from '../hooks/onSave';
 import TryContext from '../context/TryContext';
 
 function Form(props) {
-  const { setMainCard, isSaveButtonDisabled } = useContext(TryContext);
-  const { hasTrunfo, frase } = props;
-  const [formCard, setFormCard] = useState({
+  const cardAttributes = {
     cardName: '',
     cardDescription: '',
     cardAttr1: '0',
@@ -17,7 +15,19 @@ function Form(props) {
     cardImage: '',
     cardRare: 'Normal',
     cardTrunfo: false,
-  });
+  };
+
+  const {
+    hasTrunfo,
+    setMainCard,
+    decimation,
+    snap,
+    setHasTrunfo,
+    onSave,
+  } = useContext(TryContext);
+
+  const { frase } = props;
+  const [formCard, setFormCard] = useState(cardAttributes);
 
   const {
     cardName,
@@ -27,50 +37,37 @@ function Form(props) {
     cardAttr3,
     cardImage,
     cardRare,
-    cardTrunfo } = formCard;
+    cardTrunfo,
+  } = formCard;
+
+  useEffect(() => {
+    if (decimation) {
+      // decimation é uma varíavel de valor booleano que tem seu valor inicial como 'false', e é setada por 'snap()'. 'decimantion' é convertida a 'true' quando o usuário clica no botão 'salvar', provindo do hook onSave (não confundir com o state onSave). Foi a maneira mais simples que encontrei de retornar os valores do formulário para seu estado inicial.
+      setFormCard(cardAttributes);
+
+      // Aqui, na linha 50, estou aproveitando o useEffect q, consequentemente, se inicializa sempre q o usuário clica em 'salvar', para conferir se alguma card salva no estado global 'onSave' possui o atributo 'cardTrunfo' marcado como 'true'. Caso sim, o usuário não verá mais o checkbox, e em seu lugar terá uma frase informando q ele já possui um card superTrunfo. Só pode haver uma superTrunfo no game.
+      onSave.map((card) => (
+        card.cardTrunfo ? setHasTrunfo(true) : setHasTrunfo(false)));
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [decimation], snap(false));
 
   const onInputChange = ({ target }) => {
-    const form = {
-      cardName,
-      cardDescription,
-      cardAttr1,
-      cardAttr2,
-      cardAttr3,
-      cardImage,
-      cardRare,
-      cardTrunfo,
-    };
+    const card = { ...formCard };
     const { name, value, type, checked } = target;
-    if (type === 'checkbox') { form[name] = checked; } else {
-      form[name] = value;
+    if (type === 'checkbox') {
+      card[name] = checked;
+    } else {
+      card[name] = value;
     }
-    setFormCard(form);
+    setFormCard(card);
   };
 
   useEffect(() => {
-    setMainCard({
-      cardName,
-      cardDescription,
-      cardAttr1,
-      cardAttr2,
-      cardAttr3,
-      cardImage,
-      cardRare,
-      cardTrunfo,
-      isSaveButtonDisabled,
-    });
+    // mainCard é o global state q alimenta a carta que é renderizada em tempo real enquanto o usuário preenche o formulário. É aqui que passo as informações pra ela.
+    setMainCard({ ...formCard });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [
-    cardName,
-    cardDescription,
-    cardAttr1,
-    cardAttr2,
-    cardAttr3,
-    cardImage,
-    cardRare,
-    cardTrunfo,
-    isSaveButtonDisabled,
-  ]);
+  }, [formCard]);
   return (
     <div id="Formulário">
       <form>
@@ -145,6 +142,7 @@ function Form(props) {
           <option value="muito raro">Muito raro</option>
         </select>
         <label htmlFor="check">
+          {/* se o usuário já possui uma carta superTrunfo, ele verá uma frase o informando disso ao invés do checkbox */}
           { hasTrunfo === true
             ? <p data-testid="trunfo-card">{frase}</p>
             : <Inputs on={ onInputChange } has={ hasTrunfo } card={ cardTrunfo } />}
@@ -156,7 +154,6 @@ function Form(props) {
 }
 
 Form.propTypes = {
-  hasTrunfo: PropTypes.bool.isRequired,
   frase: PropTypes.string.isRequired,
 };
 

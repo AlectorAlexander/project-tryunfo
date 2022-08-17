@@ -15,6 +15,7 @@ function Provider({ children }) {
     isSaveButtonDisabled: true,
   });
   const [onSave, setOnSave] = useState([]);
+  const [decimation, snap] = useState(false);
   const [hasTrunfo, setHasTrunfo] = useState(false);
   const [frase, setFrase] = useState('Você já tem um Super Trunfo em seu baralho');
   const contextValue = {
@@ -22,6 +23,8 @@ function Provider({ children }) {
     setOnSave,
     hasTrunfo,
     setHasTrunfo,
+    decimation,
+    snap,
     frase,
     setFrase,
     mainCard,
