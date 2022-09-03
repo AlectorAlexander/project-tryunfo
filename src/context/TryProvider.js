@@ -3,13 +3,14 @@ import React, { useState } from 'react';
 import TryContext from './TryContext';
 
 function Provider({ children }) {
+  const [cardImage, setCardImage] = useState('');
   const [mainCard, setMainCard] = useState({
     cardName: '',
     cardDescription: '',
     cardAttr1: '0',
     cardAttr2: '0',
     cardAttr3: '0',
-    cardImage: '',
+    cardImage,
     cardRare: '',
     cardTrunfo: false,
     isSaveButtonDisabled: true,
@@ -26,6 +27,8 @@ function Provider({ children }) {
     snap,
     mainCard,
     setMainCard,
+    setCardImage,
+    cardImage,
   };
 
   return (

@@ -1,12 +1,12 @@
-import React, { useContext } from 'react';
+import React, { useContext/* , useEffect */ } from 'react';
 
 import TryContext from '../context/TryContext';
 import './card.css';
 
 function MainCard() {
-  const { mainCard } = useContext(TryContext);
+  const { mainCard, cardImage } = useContext(TryContext);
   const { cardName, cardDescription,
-    cardAttr1, cardAttr2, cardAttr3, cardImage,
+    cardAttr1, cardAttr2, cardAttr3,
     cardRare, cardTrunfo } = mainCard;
   return (
     <div className="Card">

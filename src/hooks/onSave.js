@@ -67,6 +67,7 @@ function OnSave() {
 
   const onSaveButtonClick = (() => {
     const newObj = { ...mainCard };
+    console.log(newObj);
     setOnSave([...onSave, newObj]);
     return cleanMainCard();
   });

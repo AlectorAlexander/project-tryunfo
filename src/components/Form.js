@@ -1,21 +1,12 @@
+/* eslint-disable prefer-destructuring */
 import React, { useContext, useEffect, useState } from 'react';
 import './form.css';
 import Inputs from './inputs';
 import OnSave from '../hooks/onSave';
 import TryContext from '../context/TryContext';
+import Characters from './Characters';
 
 function Form() {
-  const cardAttributes = {
-    cardName: '',
-    cardDescription: '',
-    cardAttr1: '0',
-    cardAttr2: '0',
-    cardAttr3: '0',
-    cardImage: '',
-    cardRare: 'Normal',
-    cardTrunfo: false,
-  };
-
   const {
     hasTrunfo,
     setMainCard,
@@ -23,7 +14,20 @@ function Form() {
     snap,
     setHasTrunfo,
     onSave,
+    setCardImage,
+    cardImage,
   } = useContext(TryContext);
+
+  const cardAttributes = {
+    cardName: '',
+    cardDescription: '',
+    cardAttr1: '0',
+    cardAttr2: '0',
+    cardAttr3: '0',
+    cardImage,
+    cardRare: 'Normal',
+    cardTrunfo: false,
+  };
 
   const [formCard, setFormCard] = useState(cardAttributes);
 
@@ -33,7 +37,6 @@ function Form() {
     cardAttr1,
     cardAttr2,
     cardAttr3,
-    cardImage,
     cardRare,
     cardTrunfo,
   } = formCard;
@@ -62,6 +65,12 @@ function Form() {
     setFormCard(card);
   };
 
+  const onImageChange = ({ target }) => {
+    const { value } = target;
+    const { src } = Characters.find(({ name }) => name === value);
+    setCardImage(src[0]);
+    onInputChange({ target });
+  };
   useEffect(() => {
     // mainCard é o global state q alimenta a carta que é renderizada em tempo real enquanto o usuário preenche o formulário. É aqui que passo as informações pra ela.
     setMainCard({ ...formCard });
@@ -72,13 +81,24 @@ function Form() {
       <form>
         <label className="label" htmlFor="Card-Name">
           <span> Nome da carta: </span>
-          <input
-            data-testid="name-input"
-            onChange={ onInputChange }
+          <select
+            onChange={ onImageChange }
             value={ cardName }
             name="cardName"
             type="text"
-          />
+          >
+            {Characters.map((char, i) => (
+              <option
+                key={ i }
+                value={ char.name }
+                name={ char.name }
+              >
+                {' '}
+                { char.name }
+                {' '}
+              </option>
+            ))}
+          </select>
         </label>
         <label className="label" htmlFor="description">
           <span> Descrição da carta: </span>
