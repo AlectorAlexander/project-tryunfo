@@ -1,18 +1,11 @@
 import React from 'react';
-import Cards from './components/Cards';
-import Form from './components/Form';
-import MainCard from './components/MainCard';
+import CreateCards from './pages/createCards';
 
 class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <h1>Tryunfo</h1>
-        <div className="ap">
-          <Form />
-          <MainCard />
-        </div>
-        <Cards />
+        <CreateCards />
       </div>
     );
   }

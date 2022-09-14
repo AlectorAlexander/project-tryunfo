@@ -1,3 +1,5 @@
+@import url(//db.onlinewebfonts.com/c/92947578193d70067aebfc8efb0c312e?family=Busorama);
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -5,6 +7,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image: url('./images/background.jpg');
 }
 
 code {
@@ -12,8 +15,15 @@ code {
     monospace;
 }
 
-h1  {
+h1, h2, h3  {
+  color: black;
   text-align: center;
+  font-family: "Busorama";
+  text-transform: uppercase;
+}
+
+p {
+  font-family: monospace;
 }
 .App {
   display: flex;
@@ -28,6 +38,7 @@ h1  {
   flex-direction: row;
   flex-wrap: wrap;
 }
+
 
 .ap div {
 margin: 0 40px;

@@ -1,39 +1,49 @@
 .Card {
-  background: #1d022687;
-  border: 7px solid rgba(43, 8, 8, 0.693);
+  background: repeat center url('../images/background-card.jpg');
+  border: 16px solid rgba(0, 0, 0, 0.997);
   border-radius: 10px;
+  box-shadow: 16px 26px 44px 35px black;
   display: flex;
   height: 529px;
-  justify-content: center;
+  justify-content: flex-start;
   left: 884px;
   padding: 10px;
   position: absolute;
-  top: 63px;
   width: 348px;
 }
 
+.card {
+  bottom: 180px;
+  justify-content: center;
+  max-width: 315px;
+  position: static;
+}
 
-.card ul {
+.Card ul {
   list-style: none;
 }
 
-.card h2 {
+.Card h2 {
   background-color: black;
   border-radius: 12px 12px 0 0;
-  color: red;
+  color: #a3671d;
   margin-bottom: 0;
   text-align: center;
 }
 
 .card img {
-  background-color: rgba(0, 0, 0, 0.453);
+  background-color: black;
   height: 250px;
   width: 350px;
 }
 
 .card p {
-  background: white;
+  background: black;
   border-radius: 0 0 12px 12px;
+  color: #a3671d;
+  flex-wrap: wrap;
   margin-top: 0;
+  max-width: 315px;
   text-align: center;
+  word-break: break-all;
 }

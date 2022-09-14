@@ -10,15 +10,43 @@ class Card extends React.Component {
     return (
       <div className={ divClass }>
         <section className={ sectionClass }>
-          <h2 data-testid="name-card">{cardName}</h2>
-          <img src={ cardImage } alt={ cardName } data-testid="image-card" />
+          <h2 className="m-2">{cardName}</h2>
+
+          <img
+            className="img-fluid img-thumbnail"
+            src={ cardImage }
+            alt={ cardName }
+          />
           <p data-testid="description-card">{ cardDescription }</p>
+
           <ul>
-            <li data-testid="attr1-card">{ cardAttr1 }</li>
-            <li data-testid="attr2-card">{ cardAttr2 }</li>
-            <li data-testid="attr3-card">{ cardAttr3 }</li>
+            <li className="text-black">
+              <strong>
+                {
+                  `Nível de Psicopatia ...... ${cardAttr1}`
+                }
+
+              </strong>
+
+            </li>
+            <li className="text-black">
+              <strong>
+                {
+                  `Nível do Profissionalismo ...... ${cardAttr2}`
+                }
+
+              </strong>
+            </li>
+            <li className="text-black">
+              <strong>
+                {
+                  `Nível da Pontaria ...... ${cardAttr3}`
+                }
+
+              </strong>
+            </li>
           </ul>
-          <h3 data-testid="rare-card">{ cardRare }</h3>
+          <h3 className="d-flex justify-content-center">{ cardRare }</h3>
           { cardTrunfo === true ? <h3 data-testid="trunfo-card">Super Trunfo</h3> : ' '}
         </section>
       </div>

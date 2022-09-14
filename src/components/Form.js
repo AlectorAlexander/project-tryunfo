@@ -1,3 +1,4 @@
+/* eslint-disable prefer-destructuring */
 import React, { useContext, useEffect, useState } from 'react';
 import './form.css';
 import Inputs from './inputs';
@@ -5,25 +6,28 @@ import OnSave from '../hooks/onSave';
 import TryContext from '../context/TryContext';
 
 function Form() {
-  const cardAttributes = {
-    cardName: '',
-    cardDescription: '',
-    cardAttr1: '0',
-    cardAttr2: '0',
-    cardAttr3: '0',
-    cardImage: '',
-    cardRare: 'Normal',
-    cardTrunfo: false,
-  };
-
   const {
     hasTrunfo,
     setMainCard,
     decimation,
     snap,
     setHasTrunfo,
+    characters,
+    setCardImage,
     onSave,
+    cardImage,
   } = useContext(TryContext);
+
+  const cardAttributes = {
+    cardName: '',
+    cardDescription: '',
+    cardAttr1: '',
+    cardAttr2: '',
+    cardAttr3: '',
+    cardImage,
+    cardRare: 'Normal',
+    cardTrunfo: false,
+  };
 
   const [formCard, setFormCard] = useState(cardAttributes);
 
@@ -33,7 +37,6 @@ function Form() {
     cardAttr1,
     cardAttr2,
     cardAttr3,
-    cardImage,
     cardRare,
     cardTrunfo,
   } = formCard;
@@ -62,64 +65,95 @@ function Form() {
     setFormCard(card);
   };
 
+  const onImageChange = ({ target }) => {
+    const { value } = target;
+    const { src } = characters.find(({ name }) => name === value);
+    setCardImage(src[0]);
+    onInputChange({ target });
+  };
   useEffect(() => {
     // mainCard é o global state q alimenta a carta que é renderizada em tempo real enquanto o usuário preenche o formulário. É aqui que passo as informações pra ela.
     setMainCard({ ...formCard });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [formCard]);
   return (
-    <div id="Formulário">
-      <form>
-        <label className="label" htmlFor="Card-Name">
+    <div className="form-group" id="Formulário">
+      <form
+        className="d-flex form flex-md-column w-100 form-control p-3 form-control-sm"
+        style={ { width: '60%' } }
+      >
+        <label className="label m-2" htmlFor="Card-Name">
           <span> Nome da carta: </span>
-          <input
-            data-testid="name-input"
-            onChange={ onInputChange }
+          <select
+            className="form-control form-control-sm-sm"
+            onChange={ onImageChange }
             value={ cardName }
             name="cardName"
             type="text"
-          />
+          >
+            <option selected value> -- Selecione um personagem -- </option>
+            {characters.map((char, i) => (
+              <option
+                key={ i }
+                value={ char.name }
+                name={ char.name }
+              >
+                {' '}
+                { char.name }
+                {' '}
+              </option>
+            ))}
+          </select>
         </label>
-        <label className="label" htmlFor="description">
+        <label className="label m-2" htmlFor="description">
           <span> Descrição da carta: </span>
           <textarea
             data-testid="description-input"
             onChange={ onInputChange }
             value={ cardDescription }
             name="cardDescription"
+            className="form-control form-control-sm"
             type="text"
+            maxLength={ 74 }
           />
         </label>
-        <label className="label" htmlFor="tribute1">
-          <span> Atributo 1: </span>
+        <label className="label m-2" htmlFor="tribute1">
+          <span> Psicopatia: </span>
           <input
             data-testid="attr1-input"
+            placeholder="Nível da Psicopatia"
             value={ cardAttr1 }
             name="cardAttr1"
+            className="form-control form-control-sm"
             onChange={ onInputChange }
             type="number"
           />
         </label>
-        <label className="label" htmlFor="tribute2">
-          <span> Atributo 2: </span>
+        <label className="label m-2" htmlFor="tribute2">
+          <span> Profissionalismo: </span>
           <input
             data-testid="attr2-input"
             name="cardAttr2"
+            className="form-control form-control-sm"
             onChange={ onInputChange }
             type="number"
             value={ cardAttr2 }
+            placeholder="Nível do Profissionalismo"
           />
         </label>
-        <label className="label" htmlFor="tribute3">
-          <span> Atributo 3: </span>
+        <label className="label m-2" htmlFor="tribute3">
+          <span> Pontaria: </span>
           <input
+            value={ cardAttr3 }
+            placeholder="Nível da Pontaria"
+            className="form-control form-control-sm"
             data-testid="attr3-input"
             name="cardAttr3"
             onChange={ onInputChange }
             type="number"
-            value={ cardAttr3 }
           />
         </label>
+        {/* PRETENDO ADICIONAR A OPÇÃO PARA O USUÁRIO ESCOLHER A PRÓPRIA IMAGEM EM UMA ATUALIZAÇÃO FUTURA;
         <label className="label" htmlFor="Imagem">
           <span> Imagem: </span>
           <input
@@ -129,16 +163,18 @@ function Form() {
             value={ cardImage }
             onChange={ onInputChange }
           />
-        </label>
+        </label> */}
         <select
+          style={ { width: 120, height: 50 } }
+          className="text-dark form-select m-2"
           data-testid="rare-input"
           onChange={ onInputChange }
           name="cardRare"
           value={ cardRare }
         >
-          <option selected value="normal">Normal</option>
-          <option value="raro">Raro</option>
-          <option value="muito raro">Muito raro</option>
+          <option selected value="Normal">Normal</option>
+          <option>Raro</option>
+          <option>Muito Raro</option>
         </select>
         <Inputs
           hasTrunfo={ hasTrunfo }
