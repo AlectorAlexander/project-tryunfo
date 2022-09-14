@@ -6,14 +6,14 @@ class Inputs extends React.Component {
   render() {
     const { onChange, checked, hasTrunfo } = this.props;
     return (
-      <div className="Input">
+      <div className="Input m-2">
         {/* se o usuário já possui uma carta superTrunfo, ele verá uma frase o informando disso ao invés do checkbox 'Super Trunfo?' */}
         { !hasTrunfo
           ? (
-            <label htmlFor="check">
+            <label className="m-0" htmlFor="check">
               <span> Super Trunfo? </span>
               <input
-                data-testid="trunfo-input"
+                className="p-2"
                 name="cardTrunfo"
                 onChange={ onChange }
                 type="checkbox"

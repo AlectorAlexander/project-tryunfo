@@ -1,9 +1,12 @@
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
+import Characters from '../components/Characters';
+import Interrogaçao from '../images/Interrogação.jpg';
 import TryContext from './TryContext';
 
 function Provider({ children }) {
-  const [cardImage, setCardImage] = useState('');
+  const [cardImage, setCardImage] = useState(Interrogaçao);
+  const [characters, setCharecters] = useState(Characters);
   const [mainCard, setMainCard] = useState({
     cardName: '',
     cardDescription: '',
@@ -26,6 +29,8 @@ function Provider({ children }) {
     decimation,
     snap,
     mainCard,
+    characters,
+    setCharecters,
     setMainCard,
     setCardImage,
     cardImage,

@@ -9,19 +9,51 @@ function MainCard() {
     cardAttr1, cardAttr2, cardAttr3,
     cardRare, cardTrunfo } = mainCard;
   return (
-    <div className="Card">
-      <section className="card">
-        <h2 data-testid="name-card">{cardName}</h2>
-        <img src={ cardImage } alt={ cardName } data-testid="image-card" />
-        <p data-testid="description-card">{ cardDescription }</p>
-        <ul>
-          <li data-testid="attr1-card">{ cardAttr1 }</li>
-          <li data-testid="attr2-card">{ cardAttr2 }</li>
-          <li data-testid="attr3-card">{ cardAttr3 }</li>
-        </ul>
-        <h3 data-testid="rare-card">{ cardRare }</h3>
-        { cardTrunfo === true ? <h3 data-testid="trunfo-card">Super Trunfo</h3> : ' '}
+    <div className="Card d-flex flex-column">
+      <h2>{cardName}</h2>
+      <section className="card align-items-start">
+        <img
+          className="img-fluid img-thumbnail"
+          src={ cardImage }
+          alt={ cardName }
+        />
+        <p className="w-100 text-center">{ cardDescription }</p>
+
       </section>
+      <ul>
+        <li className="text-black">
+          <strong>
+            {
+              `Nível de Psicopatia ...... ${cardAttr1}`
+            }
+
+          </strong>
+
+        </li>
+        <li className="text-black">
+          <strong>
+            {
+              `Nível do Profissionalismo ...... ${cardAttr2}`
+            }
+
+          </strong>
+        </li>
+        <li className="text-black">
+          <strong>
+            {
+              `Nível da Pontaria ...... ${cardAttr3}`
+            }
+
+          </strong>
+        </li>
+      </ul>
+      <h3
+        className="d-flex justify-content-center"
+      >
+        { cardRare }
+
+      </h3>
+      { cardTrunfo === true ? <h3 data-testid="trunfo-card">Super Trunfo</h3> : ' '}
     </div>
   );
 }

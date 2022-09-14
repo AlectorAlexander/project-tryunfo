@@ -1,8 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react';
+import Interrogaçao from '../images/Interrogação.jpg';
 import TryContext from '../context/TryContext';
 
 function OnSave() {
-  const { setOnSave, onSave, mainCard, setMainCard, snap } = useContext(TryContext);
+  const { setOnSave, onSave, mainCard, cardImage,
+    setCharecters,
+    characters,
+    setMainCard, setCardImage, snap } = useContext(TryContext);
   const [isSaveButtonDisabled, setIsSaveButtonDisabled] = useState(true);
 
   const SaveButtonClick = (() => {
@@ -15,7 +19,6 @@ function OnSave() {
       cardAttr1,
       cardAttr2,
       cardAttr3,
-      cardImage,
       cardRare,
     } = mainCard;
 
@@ -25,7 +28,6 @@ function OnSave() {
       cardAttr1,
       cardAttr2,
       cardAttr3,
-      cardImage,
       cardRare,
     ];
 
@@ -56,29 +58,32 @@ function OnSave() {
   const cleanMainCard = () => setMainCard({
     cardName: '',
     cardDescription: '',
-    cardAttr1: '0',
-    cardAttr2: '0',
-    cardAttr3: '0',
-    cardImage: '',
+    cardAttr1: '',
+    cardAttr2: '',
+    cardAttr3: '',
+    cardImage,
     cardRare: '',
     cardTrunfo: false,
     isSaveButtonDisabled: true,
   }, snap(true));
 
   const onSaveButtonClick = (() => {
-    const newObj = { ...mainCard };
-    console.log(newObj);
+    const newObj = { ...mainCard, cardImage };
+    const charecterName = newObj.cardName;
+    const newCharecters = characters.filter(({ name }) => name !== charecterName);
+    setCharecters(newCharecters);
     setOnSave([...onSave, newObj]);
+    setCardImage('');
+    setCardImage(Interrogaçao);
     return cleanMainCard();
   });
 
   return (
     <button
       type="button"
-      data-testid="save-button"
       disabled={ isSaveButtonDisabled }
       onClick={ onSaveButtonClick }
-      className="save"
+      className="save bs btn m-1 w-25"
     >
       {' '}
       Salvar
