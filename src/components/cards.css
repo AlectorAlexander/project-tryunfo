@@ -15,7 +15,7 @@
   box-shadow: 16px 26px 44px 35px black;
   display: flex;
   flex-direction: column;
-  height: 529px;
+  height: 549px;
   margin-top: 5vmin;
   padding: 10px;
   width: 348px;
@@ -41,7 +41,6 @@
   background-color: black;
   border-radius: 12px 12px 0 0;
   color: #a3671d;
-  margin-bottom: 0;
   text-align: center;
 }
 
