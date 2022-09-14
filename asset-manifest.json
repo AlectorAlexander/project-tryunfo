@@ -1,0 +1,39 @@
+{
+  "files": {
+    "main.css": "/project-tryunfo/static/css/main.877afedd.css",
+    "main.js": "/project-tryunfo/static/js/main.2b121c9a.js",
+    "static/media/Jules_Winnfield.png": "/project-tryunfo/static/media/Jules_Winnfield.0207704b0e2f92c48187.png",
+    "static/media/Stuntman_Mike_Death.png": "/project-tryunfo/static/media/Stuntman_Mike_Death.cfa7e9df7f3a31decc10.png",
+    "static/media/Butch_Coolidge_Loser.jpg": "/project-tryunfo/static/media/Butch_Coolidge_Loser.a1012cd19fee3c4310d4.jpg",
+    "static/media/bruce-lee.jpg": "/project-tryunfo/static/media/bruce-lee.04001083429fc99282d1.jpg",
+    "static/media/Bruce_Lee_Loser.jpg": "/project-tryunfo/static/media/Bruce_Lee_Loser.e2dccf83902afbd9ff45.jpg",
+    "static/media/Hans_Landa_Loser.jpeg": "/project-tryunfo/static/media/Hans_Landa_Loser.0831968cf70765324907.jpeg",
+    "static/media/Callvin.jpg": "/project-tryunfo/static/media/Callvin.02dab89735a680591ea4.jpg",
+    "static/media/Calvin_Loser.jpg": "/project-tryunfo/static/media/Calvin_Loser.f0e9d87014b88d67856a.jpg",
+    "static/media/background.jpg": "/project-tryunfo/static/media/background.cf078ce858b53d238616.jpg",
+    "static/media/Vic_Vega_Loser.jpg": "/project-tryunfo/static/media/Vic_Vega_Loser.f61ce5ee35a946c3d307.jpg",
+    "static/media/Louis_Gara_Loser.jpg": "/project-tryunfo/static/media/Louis_Gara_Loser.372cee2ba68c491ee60e.jpg",
+    "static/media/Hans_Landa.jpg": "/project-tryunfo/static/media/Hans_Landa.7b01774757424372215d.jpg",
+    "static/media/Interrogação.jpg": "/project-tryunfo/static/media/Interrogação.e6263a7b080fad1e9836.jpg",
+    "static/media/Vincent_Vega.jpg": "/project-tryunfo/static/media/Vincent_Vega.ead6a6f9912d3e512998.jpg",
+    "static/media/Jules_Winnfield_Loser.jpg": "/project-tryunfo/static/media/Jules_Winnfield_Loser.471d12ba841fb658d347.jpg",
+    "static/media/Louis_Gara.jpg": "/project-tryunfo/static/media/Louis_Gara.d4fbb2a3323baf3a3fe3.jpg",
+    "static/media/Freddy_Newandyke.jpg": "/project-tryunfo/static/media/Freddy_Newandyke.cce67a8610a5493e66da.jpg",
+    "static/media/Bill.jpg": "/project-tryunfo/static/media/Bill.1ab68bafcf2a76cf0d54.jpg",
+    "static/media/O-Ren_Loser.jpg": "/project-tryunfo/static/media/O-Ren_Loser.434606976a7af989b0c6.jpg",
+    "static/media/Freddy_Newandyke_Loser.jpg": "/project-tryunfo/static/media/Freddy_Newandyke_Loser.6d9db276ee20e91ce692.jpg",
+    "static/media/Daisy_Domergue.jpg": "/project-tryunfo/static/media/Daisy_Domergue.0ab72c3b09217605f7b6.jpg",
+    "static/media/Vic_Vega.jpg": "/project-tryunfo/static/media/Vic_Vega.6e8ebe73148e725dcab3.jpg",
+    "static/media/background-card.jpg": "/project-tryunfo/static/media/background-card.d7b778a71cc8b35f1007.jpg",
+    "static/media/O-Ren.jpg": "/project-tryunfo/static/media/O-Ren.433ca7e3fc25223ee65b.jpg",
+    "static/media/Elle_Driver_Loser.jpg": "/project-tryunfo/static/media/Elle_Driver_Loser.3d373846c4022d1fbeba.jpg",
+    "static/media/Charles_Mason_Loser.jpg": "/project-tryunfo/static/media/Charles_Mason_Loser.a963d349153968c460e6.jpg",
+    "index.html": "/project-tryunfo/index.html",
+    "main.877afedd.css.map": "/project-tryunfo/static/css/main.877afedd.css.map",
+    "main.2b121c9a.js.map": "/project-tryunfo/static/js/main.2b121c9a.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.877afedd.css",
+    "static/js/main.2b121c9a.js"
+  ]
+}
